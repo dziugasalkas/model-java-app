@@ -1,0 +1,28 @@
+spring:
+  config:
+    activate:
+      on-profile: "prod"
+  application:
+    name: model
+  datasource:
+    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+management:
+  metrics:
+    enabled: true
+    enable:
+      metrics: true
+      prometheus: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  
+  liquibase:
+    enabled: true
+

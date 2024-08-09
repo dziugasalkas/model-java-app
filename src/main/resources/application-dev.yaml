@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+#logging:
+#  level:
+#    liquibase: INFO
+
+spring:
+  config:
+    activate:
+      on-profile: "dev"
+  application:
+    name: model
+  datasource:
+    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-allow-others: true
+        trace: false
+  liquibase:
+    enabled: true
+    change-log: file:db/changeLog.xml
+    show-summary: summary
+    #url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+
+
+management:
+  metrics:
+    enabled: true
+    enable:
+      metrics: true
+      prometheus: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health,prometheus
+  
+
+
