@@ -32,8 +32,10 @@ public class HelloController {
 
   @GetMapping(value = "/mja/v1/hello", produces = MediaType.APPLICATION_JSON_VALUE)
   public ListHelloDto getHello() {
+    logger.debug("Get All Hello Request");
     List<HelloDto> items = helloService.getAll();
     ListHelloDto listHello = ListHelloDto.builder().items(items).build();
+    logger.debug("Get All Hello Response: " + listHello);
     return listHello;
   }
 
